@@ -560,17 +560,25 @@ body {
 }
 
 .boards-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 20px;
 }
 
 /* 768px以上の場合のスタイル */
 @media (width > 767px) {
   .boards-list {
+    /* 下記二つは同じ意味 */
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 /* 1024px以上の場合のスタイル */
 @media (width > 1023px) {
   .boards-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -578,33 +586,92 @@ body {
 }
 
 .board-link {
+  /* aタグはデフォルトでinlineなのでblockにする */
+  display: block;
+  border-radius: 6px;
+  border: 1px solid #f1f2f6;
+  /* 子要素のはみ出た部分を隠す */
+  overflow: hidden;
+}
+
+.board-link:hover{
+  border-color: #fc7401;
 }
 
 .board-thumbnail {
+  /* object-fitは画像の表示の仕方 */
+  /* cover: アスペクト比を維持したまま要素を埋める
+     contain: 全部うつす
+     fill: 比率が合わなかったら引き延ばして埋める
+  */
+  object-fit: cover;
+  /* 画像の比率を決める */
+  aspect-ratio: 16/9;
+  /* 画像が小さい時に広げる */
+  width: 100%;
 }
 
 .board-body {
+  /* 内側の余白 */
+  padding: 10px;
 }
 
 .board-title {
+  font-size: 14px;
+  border-bottom: 1px solid #f1f2f6;
+  padding-bottom: 10px;
 }
 
 .board-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  font-size: 12px;
 }
 
 .board-spot {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 10px;
+  font-size: 12px;
 }
 
 .board-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .board-category {
+  background-color: #333;
+  color: white;
+  font-size: 12px;
+  /* inlineとblockのいいとこどり */
+  display: inline-block;
+  /* padding: 上下 左右 */
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
 .board-tags {
+  display: flex;
+  justify-content: flex-end;
+  /* wrap: 要素を折り返す */
+  flex-wrap: wrap;
+  gap: 4px;
 }
 
 .board-tag {
+  display: inline-block;
+  font-size: 12px;
+  background-color: #fc7401;
+  padding: 2px 8px;
+  border-radius: 12px;
+  color: white;
 }
 
 /* footer */
